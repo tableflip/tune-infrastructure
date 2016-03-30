@@ -1,0 +1,36 @@
+- hosts: all
+  roles:
+    - common
+
+- hosts: dev
+  roles:
+    - mongodb
+    - nginx
+    - node
+    - meteor
+    - frontend
+  vars:
+    domain: dev.platform.tableflip.io
+    root_url: "https://{{domain}}"
+
+- hosts: next
+  roles:
+    - mongodb
+    - nginx
+    - node
+    - meteor
+    - frontend
+  vars:
+    domain: next.platform.tableflip.io
+    root_url: "https://{{domain}}"
+
+- hosts: production
+  roles:
+    - mongodb
+    - nginx
+    - node
+    - meteor
+    - frontend
+  vars:
+    domain: platform.tableflip.io
+    root_url: "https://{{domain}}"

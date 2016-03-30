@@ -1,0 +1,77 @@
+- name: Ensure system groups exists
+  sudo: yes
+  group: name={{user}} state=present
+
+- name: Ensure system user exists
+  sudo: yes
+  user: name={{user}} group={{user}}
+
+- name: Clone
+  sudo: yes
+  sudo_user: "{{user}}"
+  git: update=yes version=master repo=https://github.com/{{repo}}.git dest=/home/{{user}}/{{service}}/src
+
+- name: Install g++
+  sudo: yes
+  apt: name=build-essential state=present
+
+- name: Install App NPM dependencies
+  sudo: yes
+  sudo_user: "{{user}}"
+  shell: npm install
+  args:
+    chdir: /home/{{user}}/{{service}}/src
+  notify:
+    - Restart {{service}}
+
+- name: Compile CSS
+  sudo: yes
+  sudo_user: "{{user}}"
+  shell: npm run build:css
+  args:
+    chdir: /home/{{user}}/{{service}}/src
+  notify:
+    - Restart {{service}}
+
+- name: Build bundle
+  sudo: yes
+  sudo_user: "{{user}}"
+  command: meteor build --server-only --directory ..
+  args:
+    chdir: /home/{{user}}/{{service}}/src
+  notify:
+    - Restart {{service}}
+
+- name: Install Meteor NPM dependencies
+  sudo: yes
+  sudo_user: "{{user}}"
+  shell: npm install
+  args:
+    chdir: /home/{{user}}/{{service}}/bundle/programs/server
+  notify:
+    - Restart {{service}}
+
+- name: Copy settings
+  sudo: yes
+  sudo_user: "{{user}}"
+  copy: src=settings.json dest=/home/{{user}}/{{service}}/settings.json force=yes
+
+- name: Copy Upstart config
+  sudo: yes
+  template: src=upstart/upstart.conf dest=/etc/init/{{service}}.conf mode=0644 force=yes
+
+- name: Ensure the app is running
+  sudo: yes
+  service: name={{service}} state=started
+
+- name: Copy basic auth htpasswd file
+  sudo: yes
+  copy: src=.platform-htpasswd dest=/etc/nginx/.platform-htpasswd mode=0644 force=yes
+  notify:
+    - Restart Nginx
+
+- name: Copy Nginx config
+  sudo: yes
+  template: src=nginx/nginx.conf dest=/etc/nginx/conf.d/{{service}}.conf mode=0644 force=yes
+  notify:
+    - Restart Nginx
