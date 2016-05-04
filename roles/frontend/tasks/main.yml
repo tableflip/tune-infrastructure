@@ -64,12 +64,6 @@
   sudo: yes
   service: name={{service}} state=started
 
-- name: Copy basic auth htpasswd file
-  sudo: yes
-  copy: src=.platform-htpasswd dest=/etc/nginx/.platform-htpasswd mode=0644 force=yes
-  notify:
-    - Restart Nginx
-
 - name: Copy Nginx config
   sudo: yes
   template: src=nginx/nginx.conf dest=/etc/nginx/conf.d/{{service}}.conf mode=0644 force=yes

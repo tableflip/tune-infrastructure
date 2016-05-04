@@ -1,5 +1,5 @@
-settings.json
 .vagrant
 roles/frontend/files/deploy-keys
 roles/frontend/files/.platform-htpasswd
+roles/frontend/files/settings.json
 roles/nginx/files/ssl
