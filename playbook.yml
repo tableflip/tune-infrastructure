@@ -11,7 +11,7 @@
     - frontend
   vars:
     domain: dev.platform.tableflip.io
-    root_url: "https://{{domain}}"
+    root_url: "http://{{domain}}"
 
 - hosts: next
   roles:
