@@ -1,11 +1,15 @@
 - name: Get certbot auto
+  become: yes
   get_url: url="https://dl.eff.org/certbot-auto" dest=/usr/bin
 
 - name: Set certbot mode
+  become: yes
   file: path=/usr/bin/certbot-auto mode=0755
 
 - name: Create certs
-  command: ./letsencrypt-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{domain}}
+  become: yes
+  command: /user/bin/certbot-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{domain}}
 
 - name: Set cron to renew certs
-  cron: name="check certs" minute="0" hour="0" job="./letsencrypt-auto renew --pre-hook 'service nginx stop' --post-hook 'service ngnix start'"
+  become: yes
+  cron: name="check certs" minute="0" hour="0" job="/user/bin/certbot-auto renew --pre-hook 'service nginx stop' --post-hook 'service ngnix start'"
