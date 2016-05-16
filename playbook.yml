@@ -17,12 +17,13 @@
 - hosts: next
   roles:
     - mongodb
+    - letsencrypt
     - nginx
     - node
     - meteor
     - frontend
   vars:
-    domain: next.tune.tableflip.io
+    domain: summerleague.ga
     root_url: "https://{{domain}}"
     email: "hello@tableflip.io"
 
