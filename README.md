@@ -1,4 +1,4 @@
-# The Platform Infrastructure
+# Tune Infrastructure
 
 **Ansible scripts for deploying and maintaining the servers**
 
@@ -71,7 +71,7 @@ You will need some secrets... Talk to your friendly neighborhood tableflipper.
 
 - Install Ansible
 - Install Vagrant (`brew install vagrant`)
-- Add `10.100.111.100	dev.platform.tableflip.io` to your local `/etc/hosts`
+- Add `10.100.111.100	dev.tune.tableflip.io` to your local `/etc/hosts`
 
 ```sh
 # Download and provision a vm

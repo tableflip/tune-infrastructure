@@ -10,7 +10,7 @@
     - meteor
     - frontend
   vars:
-    domain: dev.platform.tableflip.io
+    domain: dev.tune.tableflip.io
     root_url: "https://{{domain}}"
 
 - hosts: next
@@ -21,7 +21,7 @@
     - meteor
     - frontend
   vars:
-    domain: next.platform.tableflip.io
+    domain: next.tune.tableflip.io
     root_url: "https://{{domain}}"
 
 - hosts: production
@@ -32,5 +32,5 @@
     - meteor
     - frontend
   vars:
-    domain: platform.tableflip.io
+    domain: tune.tableflip.io
     root_url: "https://{{domain}}"
