@@ -12,6 +12,7 @@
   vars:
     domain: dev.tune.tableflip.io
     root_url: "https://{{domain}}"
+    email: "hello@tableflip.io"
 
 - hosts: next
   roles:
@@ -23,6 +24,7 @@
   vars:
     domain: next.tune.tableflip.io
     root_url: "https://{{domain}}"
+    email: "hello@tableflip.io"
 
 - hosts: production
   roles:
@@ -34,3 +36,4 @@
   vars:
     domain: tune.tableflip.io
     root_url: "https://{{domain}}"
+    email: "hello@tableflip.io"
