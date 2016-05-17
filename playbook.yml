@@ -23,7 +23,7 @@
     - meteor
     - frontend
   vars:
-    domain: summerleague.ga
+    domain: next.tune.tableflip.io
     root_url: "https://{{domain}}"
     email: "hello@tableflip.io"
 
