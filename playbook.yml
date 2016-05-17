@@ -30,6 +30,7 @@
 - hosts: production
   roles:
     - mongodb
+    - letsencrypt
     - nginx
     - node
     - meteor
