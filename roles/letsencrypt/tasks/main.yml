@@ -1,4 +1,22 @@
-- name: Get certbot auto
+- name: Install dependencies
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - python
+    - python-dev
+    - python-virtualenv
+    - gcc
+    - dialog
+    - libaugeas0
+    - libssl-dev
+    - libffi-dev
+    - ca-certificates
+    - python-pip
+    - git
+    - apt-transport-https
+    - ca-certificates
+
+- name: Get certbot
   become: yes
   get_url: url="https://dl.eff.org/certbot-auto" dest=/usr/bin
 
@@ -8,7 +26,7 @@
 
 - name: Create certs
   become: yes
-  command: /usr/bin/certbot-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{domain}}
+  command: /usr/bin/certbot-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{domain}} --quiet
 
 - name: Set cron to renew certs
   become: yes
