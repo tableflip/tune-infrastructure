@@ -1,5 +1,4 @@
 secrets.yml
-settings.json
 .vagrant
 roles/frontend/files/deploy-keys
 roles/frontend/files/.tune-htpasswd

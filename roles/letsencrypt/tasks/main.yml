@@ -26,8 +26,8 @@
 
 - name: Create certs
   become: yes
-  command: /usr/bin/certbot-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{inventory_hostname}} --quiet
+  command: /usr/bin/certbot-auto certonly --webroot -w /var/www/example --domain {{inventory_hostname}} --agree-tos --keep-until-expiring --email {{tls_cert_email}} --quiet
 
 - name: Set cron to renew certs
   become: yes
-  cron: name="check certs" minute="0" hour="0" job="/user/bin/certbot-auto renew --pre-hook 'service nginx stop' --post-hook 'service ngnix start'"
+  cron: name="check certs" minute="0" hour="0" job="/user/bin/certbot-auto renew"

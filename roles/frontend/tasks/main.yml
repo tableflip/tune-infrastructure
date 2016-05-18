@@ -35,7 +35,7 @@
 - name: Copy settings
   become: yes
   become_user: "{{user}}"
-  copy: src=settings.json dest=/home/{{user}}/{{service}}/settings.json force=yes
+  template: src=settings.json dest=/home/{{user}}/{{service}}/settings.json force=yes
 
 - name: Copy Upstart config
   become: yes
