@@ -1,0 +1,11 @@
+- name: Create https certs
+  become: yes
+  command: /usr/bin/certbot-auto certonly --webroot -w /home/{{user}}/{{service}}/webroot --domain {{inventory_hostname}} --agree-tos --keep-until-expiring --email {{tls_cert_email}} --quiet
+  args:
+    creates: /etc/letsencrypt/live/{{inventory_hostname}}/cert.pem
+  notify:
+    - Restart Nginx
+
+- name: Set cron to renew certs
+  become: yes
+  cron: name="certbot renew" minute="27" hour="7" job="/user/bin/certbot-auto renew"

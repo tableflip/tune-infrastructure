@@ -1,6 +1,6 @@
+[app]
+tune.tableflip.io
+
+# See: `group_vars/production.yml` for group specific vars
 [production]
-<<<<<<< Updated upstream
-tune.tableflip.io ansible_ssh_user=ansible
-=======
-platform.tableflip.io
->>>>>>> Stashed changes
+tune.tableflip.io

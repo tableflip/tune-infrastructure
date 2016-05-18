@@ -1,4 +1,8 @@
-- hosts: all
+- hosts: app
   roles:
-    - apt-update
+    # - apt-update
     - frontend
+
+- hosts: production
+  roles:
+    - frontend-letsencrypt

@@ -49,17 +49,6 @@
   become: yes
   file: path=/home/{{user}}/{{service}}/webroot state=directory owner={{user}} group=www-data mode=0750
 
-- name: Create https certs
-  become: yes
-  command: /usr/bin/certbot-auto certonly --webroot -w /home/{{user}}/{{service}}/webroot --domain {{inventory_hostname}} --agree-tos --keep-until-expiring --email {{tls_cert_email}} --quiet
-  creates: /etc/letsencrypt/live/{{inventory_hostname}}/cert.pem
-  notify:
-    - Restart Nginx
-
-- name: Set cron to renew certs
-  become: yes
-  cron: name="certbot renew" minute="27" hour="7" job="/user/bin/certbot-auto renew"
-
 - name: Copy Nginx config
   become: yes
   template: src=nginx/nginx.conf dest=/etc/nginx/conf.d/{{service}}.conf mode=0644 force=yes
