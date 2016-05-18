@@ -1,6 +1,3 @@
-# Install trusty package on xenial!
-# See: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04
-
 - name: Add MongoDB ppa key
   become: yes
   apt_key: >
@@ -23,12 +20,6 @@
 - name: Copy core MongoDB configs
   become: yes
   copy: src=mongod.conf dest=/etc/mongod.conf mode=0644 force=yes
-  notify:
-    - Restart MongoDB
-
-- name: Copy systemd service config
-  become: yes
-  copy: src=mongod.service dest=/etc/systemd/system/mongodb.service mode=0644 force=yes
   notify:
     - Restart MongoDB
 

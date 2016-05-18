@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
   # For a complete reference, please see the online documentation at
   # https://docs.vagrantup.com.
 
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = "dev.tune.tableflip.io"
   config.vm.network "private_network", ip: "10.100.112.100"
   config.vm.provider "virtualbox" do |vb|
