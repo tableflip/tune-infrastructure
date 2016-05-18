@@ -1,53 +1,53 @@
 # Clone with users ssh key pair
-- name: Clone app from GitHub
-  become: yes
-  become_user: "{{user}}"
-  git: update=yes force=yes version=HEAD repo=git@github.com:{{repo}}.git dest=/home/{{user}}/{{service}}/src
-
-# See: http://guide.meteor.com/deployment.html#custom-deployment
-- name: Install App NPM dependencies
-  become: yes
-  become_user: "{{user}}"
-  shell: npm install --production
-  args:
-    chdir: /home/{{user}}/{{service}}/src
-  notify:
-    - Restart {{service}}
-
-- name: Build bundle
-  become: yes
-  become_user: "{{user}}"
-  command: meteor build .. --directory --server-only
-  args:
-    chdir: /home/{{user}}/{{service}}/src
-  notify:
-    - Restart {{service}}
-
-- name: Install Meteor NPM dependencies
-  become: yes
-  become_user: "{{user}}"
-  shell: npm install
-  args:
-    chdir: /home/{{user}}/{{service}}/bundle/programs/server
-  notify:
-    - Restart {{service}}
-
-- name: Copy settings
-  become: yes
-  become_user: "{{user}}"
-  template: src=settings.json dest=/home/{{user}}/{{service}}/settings.json force=yes
-
-- name: Copy Upstart config
-  become: yes
-  template: src=upstart/upstart.conf dest=/etc/init/{{service}}.conf mode=0644 force=yes
-
-- name: Ensure the app is running
-  become: yes
-  service: name={{service}} state=started
-
-- name: Make webroot dir
-  become: yes
-  file: path=/home/{{user}}/{{service}}/webroot state=directory owner={{user}} group=www-data mode=0750
+# - name: Clone app from GitHub
+#   become: yes
+#   become_user: "{{user}}"
+#   git: update=yes force=yes version=HEAD repo=git@github.com:{{repo}}.git dest=/home/{{user}}/{{service}}/src
+#
+# # See: http://guide.meteor.com/deployment.html#custom-deployment
+# - name: Install App NPM dependencies
+#   become: yes
+#   become_user: "{{user}}"
+#   shell: npm install --production
+#   args:
+#     chdir: /home/{{user}}/{{service}}/src
+#   notify:
+#     - Restart {{service}}
+#
+# - name: Build bundle
+#   become: yes
+#   become_user: "{{user}}"
+#   command: meteor build .. --directory --server-only
+#   args:
+#     chdir: /home/{{user}}/{{service}}/src
+#   notify:
+#     - Restart {{service}}
+#
+# - name: Install Meteor NPM dependencies
+#   become: yes
+#   become_user: "{{user}}"
+#   shell: npm install
+#   args:
+#     chdir: /home/{{user}}/{{service}}/bundle/programs/server
+#   notify:
+#     - Restart {{service}}
+#
+# - name: Copy settings
+#   become: yes
+#   become_user: "{{user}}"
+#   template: src=settings.json dest=/home/{{user}}/{{service}}/settings.json force=yes
+#
+# - name: Copy Upstart config
+#   become: yes
+#   template: src=upstart/upstart.conf dest=/etc/init/{{service}}.conf mode=0644 force=yes
+#
+# - name: Ensure the app is running
+#   become: yes
+#   service: name={{service}} state=started
+#
+# - name: Make webroot dir
+#   become: yes
+#   file: path=/home/{{user}}/{{service}}/webroot state=directory owner={{user}} group=www-data mode=0750
 
 - name: Copy Nginx config
   become: yes
