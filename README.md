@@ -43,7 +43,7 @@ You now have a test vm, running locally
 
 ```sh
 # bootstrap ansible user
-ansible-playbook -i production bootstrap.yml --extra-vars "ansible_ssh_user=root"
+ansible-playbook -i production bootstrap.yml --extra-vars "ansible_user=root"
 
 # Intall app and dependencies
 ansible-playbook -i production deploy-app.yml
