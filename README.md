@@ -31,7 +31,7 @@ This file contains all of the secrets for the deployments that we'd prefer not t
 vagrant up
 
 # Update vm with our roles
-ansible-playbook -i dev playbook.yml
+ansible-playbook -i dev deploy-app.yml
 ```
 
 You now have a test vm, running locally
@@ -46,5 +46,5 @@ You now have a test vm, running locally
 ansible-playbook -i production bootstrap.yml --extra-vars "ansible_ssh_user=root"
 
 # Intall app and dependencies
-ansible-playbook -i production playbook.yml
+ansible-playbook -i production deploy-app.yml
 ```
