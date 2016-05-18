@@ -1,0 +1,3 @@
+# Public config options
+ansible_user: ansible
+node_env: production

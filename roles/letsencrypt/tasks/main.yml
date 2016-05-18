@@ -26,7 +26,7 @@
 
 - name: Create certs
   become: yes
-  command: /usr/bin/certbot-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{domain}} --quiet
+  command: /usr/bin/certbot-auto certonly --standalone --agree-tos --keep-until-expiring --email {{email}} --domain {{inventory_hostname}} --quiet
 
 - name: Set cron to renew certs
   become: yes

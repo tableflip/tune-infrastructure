@@ -1,4 +1,3 @@
 repo: tableflip/tune
 user: tune
 service: tune
-node_env: production
