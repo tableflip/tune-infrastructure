@@ -1,4 +1,4 @@
-secrets.yaml
+secrets.yml
 settings.json
 .vagrant
 roles/frontend/files/deploy-keys
