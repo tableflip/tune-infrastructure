@@ -1,0 +1,6 @@
+[app]
+next.tune.tableflip.io
+
+# See: `group_vars/dev.yaml` for group specific vars
+[next]
+next.tune.tableflip.io
