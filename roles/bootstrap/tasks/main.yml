@@ -1,17 +1,13 @@
-- name: Ensure base OS is up-to-date
-  sudo: yes
-  apt: upgrade=dist update_cache=yes
-
 - name: Ensure ansible groups exists
-  sudo: yes
+  become: yes
   group: name=ansible state=present
 
 - name: Ensure ansible user exists
-  sudo: yes
+  become: yes
   user: name=ansible comment="Ansible" groups="ansible,sudo"
 
 - name: Set up authorized_keys for the deploy user
-  sudo: yes
+  become: yes
   authorized_key: user=ansible key="{{ item }}"
   with_file:
     - public-keys/richard@tableflip.io.id_rsa.pub
@@ -20,14 +16,14 @@
     - public-keys/bernard@tableflip.io.id_rsa.pub
 
 - name: Set ansible permissions in /etc/sudoers
-  sudo: yes
+  become: yes
   lineinfile: "dest=/etc/sudoers
               state=present
               line='ansible ALL=(ALL) NOPASSWD:ALL'
               validate='/usr/sbin/visudo -cf %s'"
 
 - name: Set timezone variables
-  sudo: yes
+  become: yes
   copy: content='Europe/London'
         dest=/etc/timezone
         owner=root
@@ -38,7 +34,7 @@
     - update timezone
 
 - name: Ensure ntp is installed
-  sudo: yes
+  become: yes
   apt: name=git state=present
 
 - { include: swap.yml }

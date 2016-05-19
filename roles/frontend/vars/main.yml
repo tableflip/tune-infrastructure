@@ -1,4 +1,2 @@
-repo: tableflip/the-platform-client
-user: platform
-service: platform
-node_env: production
+repo: tableflip/tune
+service: tune

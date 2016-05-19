@@ -1,2 +1,6 @@
+[app]
+dev.tune.tableflip.io
+
+# See: `group_vars/dev.yaml` for group specific vars
 [dev]
-dev.platform.tableflip.io ansible_ssh_user=ansible
+dev.tune.tableflip.io

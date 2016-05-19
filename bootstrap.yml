@@ -1,3 +1,11 @@
 - hosts: all
   roles:
+    - apt-update
     - bootstrap
+    - github
+    - mongodb
+    - nginx
+    - node
+    - meteor
+    - user
+    - letsencrypt

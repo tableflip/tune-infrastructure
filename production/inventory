@@ -1,2 +1,6 @@
+[app]
+tune.tableflip.io
+
+# See: `group_vars/production.yml` for group specific vars
 [production]
-platform.tableflip.io ansible_ssh_user=ansible
+tune.tableflip.io

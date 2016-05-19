@@ -1,0 +1,25 @@
+- name: Install dependencies
+  apt: name={{ item }} state=present
+  become: yes
+  with_items:
+    - python
+    - python-dev
+    - python-virtualenv
+    - gcc
+    - dialog
+    - libaugeas0
+    - libssl-dev
+    - libffi-dev
+    - ca-certificates
+    - python-pip
+    - git
+    - apt-transport-https
+    - ca-certificates
+
+- name: Get certbot
+  become: yes
+  get_url: url="https://dl.eff.org/certbot-auto" dest=/usr/bin
+
+- name: Set certbot mode
+  become: yes
+  file: path=/usr/bin/certbot-auto mode=0750

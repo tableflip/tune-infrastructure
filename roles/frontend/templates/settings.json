@@ -1,0 +1,18 @@
+{
+  "appName": "TUNE",
+  "github": {
+    "clientId": "{{secrets.github.clientId}}",
+    "secret": "{{secrets.github.secret}}"
+  },
+  "uploadcare": {
+    "privateKey": "{{secrets.uploadcare.privateKey}}"
+  },
+  "public": {
+    "mapbox": {
+      "accessToken": "pk.eyJ1Ijoib2xpemlsbGEiLCJhIjoiY2lvZGJudHpnMDAwNHV1a3hmOHE1MTl2biJ9.5A4IanqopDuvmtoJzMG1Nw"
+    },
+    "uploadcare": {
+      "publicKey": "52751803d06f5f3d0bbb"
+    }
+  }
+}

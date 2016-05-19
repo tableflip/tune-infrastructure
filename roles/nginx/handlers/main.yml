@@ -1,3 +1,3 @@
 - name: Restart Nginx
-  sudo: yes
+  become: yes
   service: name=nginx state=restarted
