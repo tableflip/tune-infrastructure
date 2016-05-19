@@ -1,7 +1,4 @@
-# /usr/bin/certbot-auto certonly --webroot -w /home/tune/tune/webroot --domain tune.tableflip.io --agree-tos --email hello@tableflip.io
-# need to start nginx before cert is generated...
-# openssl req -x509 -newkey rsa:2048 -keyout privkey.pem -out fullchain.pem -days 1 -nodes -subj '/CN=localhost'
-# /usr/bin/certbot-auto certonly --webroot -w /home/tune/tune/webroot --domain tune.tableflip.io --agree-tos --keep-until-expiring --email hello@tableflip.io --quiet
+# Assumes `frontend` has been run. Requires a non-ssl configured nginx to be running for the domain.
 - name: Ensure nginx is running
   become: yes
   service: name=nginx state=started
