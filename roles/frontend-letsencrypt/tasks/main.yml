@@ -13,7 +13,11 @@
 
 - name: Set cron to renew certs
   become: yes
-  cron: name="certbot renew" minute="27" hour="7" job="/user/bin/certbot-auto renew"
+  cron: name="certbot renew" minute="27" hour="7" day="2" job="/usr/bin/certbot-auto renew >> /var/log/letsencrypt-cron.log"
+
+- name: Set cron to reload nginx
+  become: yes
+  cron: name="nginx reload" minute="37" hour="7" day="2" job="/etc/init.d/nginx reload"
 
 # Replace nginx config with SSL flavour
 - name: Copy nginx config
